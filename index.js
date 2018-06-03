@@ -5,13 +5,26 @@ const uuid = require('uuid');
 /**
  * @class Database
  */
-class Database {
+class SimpleJSONDatabase {
 	/**
 	 * @constructor Everything that happens on instantiation
 	 */
-	constructor(path = 'root') {
+	constructor(rootRef = 'root', jsonFilePath = null) {
+		this._ref = rootRef;
 		this._db = {};
-		this._ref = path;
+		if(jsonFilePath) {
+			if(!fs.existsSync(jsonFilePath)) {
+				throw new Error(`${jsonFilePath} does not exist`);
+			}
+			const db = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
+			this._db = db;
+			if(db._ref) {
+				this._ref = db._ref;
+			}
+			console.log('got db');
+			console.log(this._db);
+			console.log(this._ref);
+		}
 		this.push = this.push.bind(this);
 		this.remove = this.remove.bind(this);
 		this.once = this.once.bind(this);
@@ -19,15 +32,15 @@ class Database {
 	}
 
 	/**
-	 * @param path the reference to the new path
+	 * @param ref the reference to the new path
 	 * @return {object} the new database ref
 	 */
-	ref(path) {
-		if (typeof path !== 'string') {
+	ref(ref) {
+		if (typeof ref !== 'string') {
 			throw new Error('ref path should be a string');
 		}
-		if(!this._db.hasOwnProperty(path)) {
-			this._db = new Database(path);
+		if(!this._db.hasOwnProperty(ref)) {
+			this._db = new SimpleJSONDatabase(ref);
 		}
 		return this._db;
 	}
@@ -85,4 +98,4 @@ class Database {
 
 }
 
-module.exports = Database;
+module.exports = SimpleJSONDatabase;

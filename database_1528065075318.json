@@ -1,0 +1,23 @@
+{
+  "_ref": "users",
+  "_db": [
+    {
+      "name": "Harry Kane",
+      "gender": "M",
+      "id": "ca775af6-b8e7-4d3a-ac38-458c206dab3e"
+    },
+    {
+      "name": "John Doe",
+      "gender": "M",
+      "country": "Unknown",
+      "isActive": true,
+      "id": "00155722-fcdb-44a1-ae85-564c0283a17b"
+    },
+    {
+      "name": "Ben",
+      "occupation": "Developer",
+      "hobby": "Dancing",
+      "id": "9a3f957a-3403-421c-a9ca-3b47dca8cc2d"
+    }
+  ]
+}

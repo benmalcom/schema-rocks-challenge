@@ -1,14 +1,14 @@
 // import database class here
-const Database  = require('./index');
+const SimpleJSONDatabase  = require('./index');
 // initialize database class
-const db = new Database();
-
+const db = new SimpleJSONDatabase(null, 'database_1528065075318.json');
+/*
 // create a database ref
-const ref = db.ref('users').ref('profiles');
+const ref = db.ref('users');
 
 // add objects to ref
 ref.push({name: 'Harry Kane', gender: 'M'});
-ref.push({name: 'John Doe'});
+ref.push({name: 'John Doe', gender: 'M', country: 'Unknown', isActive: true});
 ref.push({name: 'Ben', occupation: 'Developer', hobby: 'Dancing'});
 
 
@@ -16,14 +16,6 @@ ref.push({name: 'Ben', occupation: 'Developer', hobby: 'Dancing'});
 ref.once(console.log);
 
 // Download the current ref as json file
-db.downloadAsJSON();
+db.downloadAsJSON();*/
 
-// Download whole database as json file
-db.downloadAsJSON();
-
-// remove all data under current reference [users]
-ref.remove();
-
-// remove all data under the database
-db.remove();
 
